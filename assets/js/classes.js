@@ -65,3 +65,26 @@ class BigMonster extends Character{
         this.maxLife = this.life;
     }
 }
+
+class Stage{
+
+    constructor(fighter1, fighter2, fighterEl1, fighterEl2){
+        this.fighter1 = fighter1;
+        this.fighter2 = fighter2;
+        this.fighterEl1 = fighterEl1;
+        this.fighterEl2 = fighterEl2;
+    }
+
+    start(){
+        this.update();
+        // TODO: Evento do botâo de atacar.
+    }
+
+    update(){
+        // Fighter 1
+        this.fighterEl1.querySelector('.name').innerHTML = this.fighter1.name
+
+        // Fighter 2
+        this.fighterEl2.querySelector('.name').innerHTML = this.fighter2.name
+    }
+}
