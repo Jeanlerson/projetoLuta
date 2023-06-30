@@ -68,11 +68,12 @@ class BigMonster extends Character{
 
 class Stage{
 
-    constructor(fighter1, fighter2, fighterEl1, fighterEl2){
+    constructor(fighter1, fighter2, fighterEl1, fighterEl2, logObject){
         this.fighter1 = fighter1;
         this.fighter2 = fighter2;
         this.fighterEl1 = fighterEl1;
         this.fighterEl2 = fighterEl2;
+        this.log = logObject;
     }
 
     start(){
@@ -96,7 +97,7 @@ class Stage{
 
     doAttack(attacking, attacked){
         if(attacking.life <= 0 || attacked.life <= 0){
-            console.log('Luta acabada!');
+            this.log.addMessage('Luta acabada!');
             return;
         }
 
@@ -109,11 +110,33 @@ class Stage{
 
         if(actualAttack > actualDefense){
             attacked.life -= actualAttack;
-            console.log(`${attacking.name} causou ${actualAttack.toFixed(2)} de dano em ${attacked.name}`);
+            this.log.addMessage(`${attacking.name} causou ${actualAttack.toFixed(2)} de dano em ${attacked.name}`);
         } else{
-            console.log(`${attacked.name} conseguiu se defender...`);
+            this.log.addMessage(`${attacked.name} conseguiu se defender...`);
         }
 
         this.update();
+    }
+}
+
+class Log{
+
+    list = [];
+
+    constructor(listEl){
+        this.listEl = listEl;
+    }
+
+    addMessage(msg){
+        this.list.push(msg);
+        this.render();
+    }
+
+    render(){
+        this.listEl.innerHTML = '';
+
+        for(let i in this.list){
+            this.listEl.innerHTML += `<li>${this.list[i]}</li>`;
+        }
     }
 }
