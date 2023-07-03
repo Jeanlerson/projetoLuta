@@ -18,5 +18,12 @@ stage.start();*/
 const char = creatKnight('Jeanlerson');
 const monster = creatBigMonster();
 
-console.log(monster.attackFun);
+stageFun.startFun(
+    char,
+    monster,
+    document.querySelector('#char'),
+    document.querySelector('#monster')
+);
+
+console.log(monster.lifeFun);
 console.log(char.maxLifeFun);

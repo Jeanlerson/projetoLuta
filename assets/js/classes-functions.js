@@ -194,3 +194,45 @@ const creatBigMonster = () => {
         defenseFun: 6
     }
 }
+
+const stageFun = {
+    fighter1Fun: null,
+    fighter2Fun: null,
+    fighterEl1Fun: null,
+    fighterEl2Fun: null,
+
+    startFun(fighter1Fun, fighter2Fun, fighterEl1Fun, fighterEl2Fun){
+        this.fighter1Fun = fighter1Fun;
+        this.fighter2Fun = fighter2Fun;
+        this.fighterEl1Fun = fighterEl1Fun;
+        this.fighterEl2Fun = fighterEl2Fun;
+
+        this.fighterEl1Fun.querySelector('.attackButton').addEventListener('click', 
+        () => this.doAttackFun(this.fighter1Fun, this.fighter2Fun));
+        this.fighterEl2Fun.querySelector('.attackButton').addEventListener('click', 
+        () => this.doAttackFun(this.fighter2Fun, this.fighter1Fun));
+
+        this.updateFun();
+    },
+    updateFun() {
+        //fighter1Fun
+        this.fighterEl1Fun.querySelector('.name').innerHTML = 
+        `${this.fighter1Fun.nameFun} - ${this.fighter1Fun.lifeFun.toFixed(1)} HP`
+
+        let f1PctFun = (this.fighter1Fun.lifeFun / this.fighter1Fun.maxLifeFun) * 100;
+        this.fighterEl1Fun.querySelector('.bar').style.width = `${f1PctFun}%`;
+
+        //fighter2Fun
+        this.fighterEl2Fun.querySelector('.name').innerHTML = 
+        `${this.fighter2Fun.nameFun} - ${this.fighter2Fun.lifeFun.toFixed(1)} HP`
+
+        let f2PctFun = (this.fighter2Fun.lifeFun / this.fighter2Fun.maxLifeFun) * 100;
+        this.fighterEl2Fun.querySelector('.bar').style.width = `${f2PctFun}%`;
+
+    },
+    doAttackFun(attackingFun, attackedFun){
+        console.log(`${attackingFun.nameFun} ataca ${attackedFun.nameFun}`);
+
+        this.updateFun();
+    }
+}
