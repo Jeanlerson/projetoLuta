@@ -1,7 +1,7 @@
 // knight ou Sorcerer - Guerreiro ou mago
 // LittleMonster ou BigMonster
 
-class Character{
+/*class Character{
 
     _life = 1;
     maxLife = 1;
@@ -138,5 +138,59 @@ class Log{
         for(let i in this.list){
             this.listEl.innerHTML += `<li>${this.list[i]}</li>`;
         }
+    }
+}*/
+
+//-------------------------------------LUTA FUNCIONAL------------------------
+
+const defaultCharacter = {
+    nameFun: '',
+    lifeFun: 1,
+    maxLifeFun: 1,
+    attackFun: 0,
+    defenseFun: 0
+}
+
+const creatKnight = (nameFun) => {
+    return{
+        ...defaultCharacter,
+        nameFun,
+        lifeFun: 100,
+        maxLifeFun: 100,
+        attackFun: 10,
+        defenseFun: 8
+    }
+}
+
+const creatSorcerer = (nameFun) => {
+    return{
+        ...defaultCharacter,
+        nameFun,
+        lifeFun: 80,
+        maxLifeFun: 80,
+        attackFun: 14,
+        defenseFun: 4
+    }
+}
+
+const creatLittleMonster = () => {
+    return{
+        ...defaultCharacter,
+        nameFun: 'Little Monster',
+        lifeFun: 60,
+        maxLifeFun: 60,
+        attackFun: 7,
+        defenseFun: 3
+    }
+}
+
+const creatBigMonster = () => {
+    return{
+        ...defaultCharacter,
+        nameFun: 'Big Monster',
+        lifeFun: 120,
+        maxLifeFun: 120,
+        attackFun: 16,
+        defenseFun: 6
     }
 }
