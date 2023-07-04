@@ -232,7 +232,7 @@ const stageFun = {
     },
     doAttackFun(attackingFun, attackedFun){
         if(attackingFun.lifeFun <= 0 || attackedFun.lifeFun <= 0){
-            console.log('Luta acabada!!');
+            logFun.addMessageFun('Luta acabada!!');
             return;
         }
 
@@ -245,11 +245,27 @@ const stageFun = {
         if(actualAttackFun > actualDefenseFun){
             attackedFun.lifeFun -= actualAttackFun;
             attackedFun.lifeFun = attackedFun.lifeFun < 0 ? 0 : attackedFun.lifeFun;
-            console.log(`${attackingFun.nameFun} causou ${actualAttackFun.toFixed(2)} de dano em ${attackedFun.nameFun}`);
+            logFun.addMessageFun(`${attackingFun.nameFun} causou ${actualAttackFun.toFixed(2)} de dano em ${attackedFun.nameFun}`);
         } else{
-            console.log(`${attackedFun.nameFun} bloqueou o ataque...`)
+            logFun.addMessageFun(`${attackedFun.nameFun} bloqueou o ataque...`)
         }
 
         this.updateFun();
+    }
+}
+
+const logFun = {
+    listFun: [],
+    addMessageFun(msgFun) {
+        this.listFun.push(msgFun);
+        this.renderFun();
+    },
+    renderFun(){
+        const logElFun = document.querySelector('.log');
+        logElFun.innerHTML = '';
+
+        for (let iFun in this.listFun) {
+        logElFun.innerHTML += `<li>${this.listFun[iFun]}</li>`;
+        }
     }
 }
