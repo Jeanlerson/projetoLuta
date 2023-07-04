@@ -231,7 +231,24 @@ const stageFun = {
 
     },
     doAttackFun(attackingFun, attackedFun){
-        console.log(`${attackingFun.nameFun} ataca ${attackedFun.nameFun}`);
+        if(attackingFun.lifeFun <= 0 || attackedFun.lifeFun <= 0){
+            console.log('Luta acabada!!');
+            return;
+        }
+
+        const attackFactorFun = (Math.random() * 2).toFixed(2);
+        const defenseFactorFun = (Math.random() * 2).toFixed(2);
+
+        const actualAttackFun = attackingFun.attackFun * attackFactorFun;
+        const actualDefenseFun = attackedFun.defenseFun * defenseFactorFun;
+
+        if(actualAttackFun > actualDefenseFun){
+            attackedFun.lifeFun -= actualAttackFun;
+            attackedFun.lifeFun = attackedFun.lifeFun < 0 ? 0 : attackedFun.lifeFun;
+            console.log(`${attackingFun.nameFun} causou ${actualAttackFun.toFixed(2)} de dano em ${attackedFun.nameFun}`);
+        } else{
+            console.log(`${attackedFun.nameFun} bloqueou o ataque...`)
+        }
 
         this.updateFun();
     }
